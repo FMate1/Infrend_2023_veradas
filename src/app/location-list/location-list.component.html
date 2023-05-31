@@ -24,8 +24,8 @@
 				<ng-template #thenBlock>Aktív</ng-template>
 				<ng-template #elseBlock>Inaktív</ng-template>
 			</td>
-			<td><button class="btn btn-sm btn-outline-success" (click)="activateLocation(location)">Aktiválás</button></td>
-			<td><button class="btn btn-sm btn-outline-danger" (click)="deactivateLocation(location)">Deaktiválás</button></td>
+			<td *ngIf="authService.isLoggedIn()"><button class="btn btn-sm btn-outline-success" (click)="activateLocation(location)">Aktiválás</button></td>
+			<td *ngIf="authService.isLoggedIn()"><button class="btn btn-sm btn-outline-danger" (click)="deactivateLocation(location)">Deaktiválás</button></td>
 		</tr>
 	</tbody>
 </table>

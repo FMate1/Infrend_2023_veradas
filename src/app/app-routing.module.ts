@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BloodDonationFormListComponent } from './bloodDonationForm-list/bloodDonationForm-list.component';
 import { BloodDonationFormComponent } from './bloodDonationForm-form/bloodDonationForm-form.component';
 import { LocationListComponent } from './location-list/location-list.component';
 import { BloodDonorFormComponent } from './bloodDonor-form/bloodDonor-form.component';
 import { LocationFormComponent } from './location-form/location-form.component';
+import { RegistrationFormComponent } from './registration-form/registration-form.component';
+import { LoginComponent } from './login/login.component';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
   {
@@ -13,11 +16,13 @@ const routes: Routes = [
   },
   {
     path: 'product-form',
-    component: BloodDonationFormComponent
+    component: BloodDonationFormComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'product-form/:id',
-    component: BloodDonationFormComponent
+    component: BloodDonationFormComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'location-list',
@@ -25,11 +30,21 @@ const routes: Routes = [
   },
   {
     path: 'bloodDonor-form',
-    component: BloodDonorFormComponent
+    component: BloodDonorFormComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
   },
   {
     path: 'location-form',
-    component: LocationFormComponent
+    component: LocationFormComponent,
+    canActivate: [ () => inject(AuthService).preventGuestAccess() ]
+  },
+  {
+    path: 'registration-form',
+    component: RegistrationFormComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

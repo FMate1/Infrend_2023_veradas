@@ -10,16 +10,22 @@
           <a class="nav-link active" aria-current="page" routerLink="/">Véradási űrlapok</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/product-form">Új véradási űrlap</a>
+          <a class="nav-link" routerLink="/product-form" *ngIf="authService.isLoggedIn()">Új véradási űrlap</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="/location-list">Helyszínek listája</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/location-form">Új helyszín</a>
+          <a class="nav-link" routerLink="/location-form" *ngIf="authService.isLoggedIn()">Új helyszín</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/bloodDonor-form">Új véradó űrlap</a>
+          <a class="nav-link" routerLink="/bloodDonor-form" *ngIf="authService.isLoggedIn()">Új véradó űrlap</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" *ngIf="!authService.isLoggedIn()">Belépés</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" (click)="logout()" *ngIf="authService.isLoggedIn()">Kilépés</a>
         </li>
       </ul>
     </div>

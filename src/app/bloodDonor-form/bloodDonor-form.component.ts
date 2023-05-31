@@ -91,14 +91,7 @@ export class BloodDonorFormComponent implements OnInit {
         }
       });
     } else {
-      this.bloodDonorFormService.update(bloodDonor).subscribe({
-        next: (bloodDonor) => {
-          this.toastrService.success('Véradó sikeresen szerkesztve.' , 'Siker');
-        },
-        error: (err) => { 
-          this.toastrService.error('A véradó szerkesztése nem sikerült.', 'Hiba');
-        }
-      });
+      this.toastrService.error('A veradó hozzáadása nem sikerült.', 'Hiba');
     }
   }
 }

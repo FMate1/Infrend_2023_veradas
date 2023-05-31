@@ -3,6 +3,7 @@ import { LocationController } from './controller/location.controller';
 import { BloodDonorController } from './controller/bloodDonor.controller';
 import { BloodDonationFormController } from './controller/bloodDonationForm.controller';
 import { UserController } from './controller/user.controller';
+import { checkUser } from './protect-routes';
 
 export function getRoutes() {
     const router = express.Router();
@@ -11,29 +12,32 @@ export function getRoutes() {
 
     router.get('/locations', locationController.getAll);
     router.get('/locations/:id', locationController.getOne);
-    router.post('/locations', locationController.create);
-    router.put('/locations', locationController.update);
-    router.delete('/locations/:id', locationController.delete);
+    router.post('/locations', checkUser, locationController.create);
+    router.put('/locations', checkUser, locationController.update);
+    router.delete('/locations/:id', checkUser, locationController.delete);
+    router.put('/locations', checkUser, locationController.activateLocationStatus);
+    router.put('/locations', checkUser, locationController.deactivateLocationStatus);
 
     const bloodDonorController = new BloodDonorController();
 
     router.get('/bloodDonors', bloodDonorController.getAll);
     router.get('/bloodDonors/:id', bloodDonorController.getOne);
-    router.post('/bloodDonors', bloodDonorController.create);
-    router.put('/bloodDonors', bloodDonorController.update);
-    router.delete('/bloodDonors/:id', bloodDonorController.delete);
+    router.post('/bloodDonors', checkUser, bloodDonorController.create);
+    router.put('/bloodDonors', checkUser, bloodDonorController.update);
+    router.delete('/bloodDonors/:id', checkUser, bloodDonorController.delete);
 
     const bloodDonationFormController = new BloodDonationFormController();
 
     router.get('/bloodDonationForms', bloodDonationFormController.getAll);
     router.get('/bloodDonationForms/:id', bloodDonationFormController.getOne);
-    router.post('/bloodDonationForms', bloodDonationFormController.create);
-    router.put('/bloodDonationForms', bloodDonationFormController.update);
-    router.delete('/bloodDonationForms/:id', bloodDonationFormController.delete);
+    router.post('/bloodDonationForms', checkUser, bloodDonationFormController.create);
+    router.put('/bloodDonationForms', checkUser, bloodDonationFormController.update);
+    router.delete('/bloodDonationForms/:id', checkUser, bloodDonationFormController.delete);
 
     const userController = new UserController();
 
-    router.get('/users', userController.create);
+    router.post('/users', userController.create);
+    router.post('/users/login', userController.login);
 
     return router;
 }

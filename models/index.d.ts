@@ -36,3 +36,12 @@ export interface UserDTO {
     firstName: string;
     lastName: string;
 }
+
+export interface LoginDTO {
+    email: string;
+    password: string;
+}
+
+export interface AccessTokenDTO {
+    accessToken: string;
+}

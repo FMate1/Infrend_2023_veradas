@@ -3,6 +3,7 @@ import { LocationDTO } from 'models';
 import { LocationService } from '../services/location.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-location-list',
@@ -15,7 +16,8 @@ export class LocationListComponent implements OnInit {
   constructor(
     private locationService: LocationService,
     private toastrService: ToastrService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -29,8 +31,6 @@ export class LocationListComponent implements OnInit {
     });
 
   }
-
-
 
   activateLocation(location: LocationDTO) {
     location.isActive = true;
@@ -57,7 +57,4 @@ export class LocationListComponent implements OnInit {
       }
     })
   }
-
-
-
 }
