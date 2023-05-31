@@ -104,7 +104,7 @@ export class BloodDonationFormComponent implements OnInit {
   validateForm(inputForm: BloodDonationFormDTO): void {
     if (!inputForm.dateOfBloodDonation || !inputForm.bloodDonor || !inputForm.examiningDoctorName 
       || !inputForm.isDirectedBloodDonation || !inputForm.location || !inputForm.isSuitable 
-      ) {   // || inputForm.location.isActive.valueOf() === false
+      || inputForm.location.isActive.valueOf() === false) {
       this.isValidBloodDonation = false;
     } else {
       if (inputForm.isSuitable === 'nem') {

@@ -11,7 +11,7 @@
             <div class="mb-3">
                 <label for="location" class="form-label">Helyszín</label>
                 <select name="location" id="location" class="form-select" formControlName="location">
-                    <option *ngFor="let locationOption of locations" [ngValue]="{ id: locationOption.id }">
+                    <option *ngFor="let locationOption of locations" [ngValue]="{ id: locationOption.id }" [ngValue]="{ isActive: locationOption.isActive }">
                         {{ locationOption.institutionName }}
                     </option>
                 </select>
