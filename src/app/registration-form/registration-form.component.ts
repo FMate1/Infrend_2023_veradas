@@ -14,6 +14,7 @@ export class RegistrationFormComponent {
   registrationForm = this.formBuilder.group({
     id: this.formBuilder.control(0),
     email: this.formBuilder.control(''),
+    password: this.formBuilder.control(''),
     firstName: this.formBuilder.control(''),
     lastName: this.formBuilder.control('')
   });
@@ -27,7 +28,7 @@ export class RegistrationFormComponent {
   isValidUser = true;
 
   validateForm(inputForm: UserDTO): void {
-    if (!inputForm.email || !inputForm.firstName || !inputForm.lastName ) {
+    if (!inputForm.email || !inputForm.password || !inputForm.firstName || !inputForm.lastName ) {
       this.isValidUser = false;
     }
   }
