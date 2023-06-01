@@ -11,9 +11,13 @@
             <div class="mb-3">
                 <label for="location" class="form-label">Helyszín</label>
                 <select name="location" id="location" class="form-select" formControlName="location">
-                    <option *ngFor="let locationOption of locations" [ngValue]="{ id: locationOption.id }" [ngValue]="{ isActive: locationOption.isActive }">
-                        {{ locationOption.institutionName }}
-                    </option>
+                    <ng-container *ngFor="let locationOption of locations">
+                        <option *ngIf="locationOption.isActive === true" [ngValue]="{ id: locationOption.id }"
+                            [ngValue]="{ isActive: locationOption.isActive }">
+                            {{ locationOption.institutionName }}
+                        </option>
+                    </ng-container>
+
                 </select>
             </div>
             <div class="mb-3">
@@ -27,36 +31,40 @@
             <div class="mb-3">
                 <label for="dateOfBloodDonation" class="form-label">Véradás dátuma</label>
                 <input type="date" class="form-control" id="dateOfBloodDonation" name="dateOfBloodDonation"
-                formControlName="dateOfBloodDonation">
+                    formControlName="dateOfBloodDonation">
             </div>
             <div class="mb-3">
                 <label for="isSuitable" class="form-label">Alkalmas véradásra?</label>
-                <select name="isSuitable" id="isSuitable" class="form-select" formControlName="isSuitable" [(ngModel)]="inputIsSuitable">
+                <select name="isSuitable" id="isSuitable" class="form-select" formControlName="isSuitable"
+                    [(ngModel)]="inputIsSuitable">
                     <option value="igen">Igen</option>
                     <option value="nem">Nem</option>
                 </select>
                 <div class="mb-3" *ngIf="inputIsSuitable === 'nem'">
                     <label for="whyNotSuitable">Miért nem alkalmas?</label>
-                    <input type="text" class="form-control" id="whyNotSuitable" name="whyNotSuitable" formControlName="whyNotSuitable">
+                    <input type="text" class="form-control" id="whyNotSuitable" name="whyNotSuitable"
+                        formControlName="whyNotSuitable">
                 </div>
             </div>
             <div class="mb-3">
                 <label for="examiningDoctorName" class="form-label">Vizsgálatot végző orvos neve</label>
                 <input type="text" class="form-control" id="examiningDoctorName" name="examiningDoctorName"
-                formControlName="examiningDoctorName">
+                    formControlName="examiningDoctorName">
             </div>
             <div class="mb-3">
                 <label for="isDirectedBloodDonation" class="form-label">Irányított véradás?</label>
-                <select name="isDirectedBloodDonation" id="isDirectedBloodDonation" class="form-select" 
-                formControlName="isDirectedBloodDonation" [(ngModel)]="inputIsDirectedBloodDonation">
+                <select name="isDirectedBloodDonation" id="isDirectedBloodDonation" class="form-select"
+                    formControlName="isDirectedBloodDonation" [(ngModel)]="inputIsDirectedBloodDonation">
                     <option value="igen">Igen</option>
                     <option value="nem">Nem</option>
                 </select>
                 <div class="mb-3" *ngIf="inputIsDirectedBloodDonation === 'igen'">
                     <label for="patientFullName">Beteg teljes neve</label>
-                    <input type="text" class="form-control" id="patientFullName" name="patientFullName" formControlName="patientFullName">
+                    <input type="text" class="form-control" id="patientFullName" name="patientFullName"
+                        formControlName="patientFullName">
                     <label for="patientTAJnumber">Beteg TAJ száma</label>
-                    <input type="text" class="form-control" id="patientTAJnumber" name="patientTAJnumber" formControlName="patientTAJnumber">
+                    <input type="text" class="form-control" id="patientTAJnumber" name="patientTAJnumber"
+                        formControlName="patientTAJnumber">
                 </div>
             </div>
             <div class="text-end">
